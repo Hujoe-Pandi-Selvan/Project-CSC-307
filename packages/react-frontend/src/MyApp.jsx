@@ -4,7 +4,7 @@ import Form from "./Form";
 
 
 function MyApp() {
-    <Form handleSubmit={updateList} />
+    
     const [characters, setCharacters] = useState([]);
 
   function removeOneCharacter(index) {
@@ -24,7 +24,7 @@ function MyApp() {
         characterData={characters}
         removeCharacter={removeOneCharacter}
       />
-      <Form />
+      <Form handleSubmit={updateList} />
     </div>
   );
 }
