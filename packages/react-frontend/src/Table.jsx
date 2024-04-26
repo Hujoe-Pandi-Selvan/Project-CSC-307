@@ -98,11 +98,11 @@ function TableBody(props) {
   const rows = props.characterData.map((row, index) => {
     return (
       <tr key={index}>
-        <td>{row.id}</td> {/* Display ID */}
+        <td>{row._id}</td> {/* Display ID */}
         <td>{row.name}</td>
         <td>{row.job}</td>
         <td>
-          <button onClick={() => props.removeCharacter(index)}>
+          <button onClick={() => props.removeCharacter(row._id)}>
             Delete
           </button>
         </td>

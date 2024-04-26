@@ -59,7 +59,7 @@
 import Table from "./Table";
 import Form from "./Form";
 import React, { useState, useEffect } from 'react';
-
+const serve = "http://localhost:6903/users"
 function MyApp() {
 
     const [characters, setCharacters] = useState([]);
@@ -72,11 +72,11 @@ function MyApp() {
     }, []);
 
     function fetchUsers() {
-        return fetch("http://localhost:8000/users");
+        return fetch(serve);
     }
 
     function postUser(person) {
-        return fetch("http://localhost:8000/users", {
+        return fetch(serve, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -85,14 +85,16 @@ function MyApp() {
         });
     }
 
-    function removeUser(id) {
-        fetch(`http://localhost:8000/users/${id}`, {
+    function removeUser(_id) {
+        fetch(`${serve}/${_id}`, {
             method: 'DELETE',
         })
+
         .then(response => {
+          //console.log();
             if (response.status === 204) {
                 // Successful deletion on the backend, now update frontend
-                setCharacters(characters.filter(character => character.id !== id));
+                setCharacters(characters.filter(character => character._id !== _id));
             } else if (response.status === 404) {
                 // Resource not found on the backend
                 console.error('Resource not found.');
